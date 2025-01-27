@@ -1,9 +1,11 @@
 import { Button } from "antd";
 import "./FeaturedProducts.css";
-import { useGetAllCarsQuery } from "../../redux/features/productApi";
+import { useGetFeaturndCarsQuery } from "../../redux/features/productApi";
+import { useNavigate } from "react-router-dom";
 
 const FeaturedProducts = () => {
-  const { data } = useGetAllCarsQuery(undefined);
+  const { data } = useGetFeaturndCarsQuery(undefined);
+  const navigate = useNavigate();
 
   return (
     <div className="vehicle-carousel-container">
@@ -28,7 +30,7 @@ const FeaturedProducts = () => {
         </div>
 
         <div className="featured-products-container">
-          {data?.data.slice(0, 6).map((product) => (
+          {data?.data?.slice(0, 6).map((product) => (
             <div className="card" key={product.id}>
               <h2>
                 {product.brand} {product.model}
@@ -37,7 +39,12 @@ const FeaturedProducts = () => {
                 ${product.price} <span></span>
               </p>
               <img src={product.image} alt={product.name} />
-              <div className="arrow">&rarr;</div>
+              <div
+                onClick={() => navigate(`/${product._id}`)}
+                className="arrow"
+              >
+                &rarr;
+              </div>
             </div>
           ))}
         </div>

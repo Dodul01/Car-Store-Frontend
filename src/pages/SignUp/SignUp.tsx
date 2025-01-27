@@ -1,37 +1,32 @@
 import { Button, Form, Input } from "antd";
-import { useLogInMutation } from "../../redux/features/Auth/authApi";
-import { verifyToken } from "../../utils/verifyToken";
-import { useAppDispatch } from "../../redux/hook";
-import { setUser } from "../../redux/features/Auth/authSlice";
+import { useRegisterMutation } from "../../redux/features/Auth/authApi";
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
   const [form] = Form.useForm();
-  const [logIn] = useLogInMutation();
-  const dispatch = useAppDispatch();
+  const [register] = useRegisterMutation();
 
-  interface SignInFormValues {
+  interface SignUpFormValues {
+    name: string;
     email: string;
     password: string;
   }
 
-  const handleForm = async (value: SignInFormValues) => {
+  const handleForm = async (value: SignUpFormValues) => {
     try {
       const userInfo = {
+        name: value.name,
         email: value.email,
         password: value.password,
       };
 
-      const res = await logIn(userInfo).unwrap();
-      const user = verifyToken(res.data.token);
-
-      // TODO: Store the data using redux in local storage and show the user
-      dispatch(setUser({ user: user, token: res.data.token }));
-      console.log(user);
+      const res = await register(userInfo).unwrap();
+      console.log(res);
+      // Todo: store the data using redux in local storage
+      
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <div
       style={{
@@ -52,8 +47,15 @@ const SignIn: React.FC = () => {
           width: "100%",
         }}
       >
-        <h2 style={{ textAlign: "center", color: "#333333" }}>Sign In</h2>
+        <h2 style={{ textAlign: "center", color: "#333333" }}>Sign Up</h2>
         <Form layout="vertical" form={form} onFinish={handleForm}>
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[{ required: true, message: "Please enter your name!" }]}
+          >
+            <Input placeholder="Enter your name" />
+          </Form.Item>
           <Form.Item
             label="Email"
             name="email"
@@ -91,4 +93,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

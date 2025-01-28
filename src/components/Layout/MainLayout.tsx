@@ -120,7 +120,7 @@ const MainLayout = () => {
               </Button>
             </Space>
           </Header>
-          <Content style={{ margin: "24px 16px 0" }}>
+          <Content style={{ margin: "16px", overflow: "scroll" }}>
             <Outlet />
           </Content>
         </Layout>

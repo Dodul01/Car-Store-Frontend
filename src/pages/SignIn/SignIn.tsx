@@ -4,12 +4,13 @@ import { verifyToken } from "../../utils/verifyToken";
 import { useAppDispatch } from "../../redux/hook";
 import { setUser } from "../../redux/features/Auth/authSlice";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const SignIn: React.FC = () => {
   const [form] = Form.useForm();
   const [logIn] = useLogInMutation();
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   interface SignInFormValues {
     email: string;
     password: string;
@@ -26,10 +27,19 @@ const SignIn: React.FC = () => {
       const res = await logIn(userInfo).unwrap();
       const user = verifyToken(res.data.token);
 
-      // Done: Store the data using redux in local storage and show the user
+      console.log(res);
+
       dispatch(setUser({ user: user, token: res.data.token }));
       toast.success("Sign in successfully.", { id: toastId, duration: 2000 });
       // console.log(res.message);
+
+      if (user?.role === "seller") {
+        navigate("/all-cars");
+      }
+
+      if (user?.role === "admin") {
+        navigate("/admin/dashboard");
+      }
     } catch (error) {
       toast.error("Something went wrong", { id: toastId, duration: 2000 });
     }

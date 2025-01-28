@@ -1,5 +1,6 @@
 import Title from "antd/es/typography/Title";
 import UserDashboard from "../pages/User/UserDashboard";
+import MyCart from "../pages/User/MyCart";
 
 export const userPaths = [
   {
@@ -10,11 +11,7 @@ export const userPaths = [
   {
     name: "My cart",
     path: "cart",
-    element: (
-      <div>
-        <Title>My Cart page</Title>
-      </div>
-    ),
+    element: <MyCart />,
   },
   {
     name: "Track My Order",

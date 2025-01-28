@@ -1,5 +1,7 @@
 import Title from "antd/es/typography/Title";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
+import AddCar from "../pages/Admin/AddCar";
+import ManageCar from "../pages/Admin/ManageCar";
 
 export const adminPaths = [
   {
@@ -10,29 +12,20 @@ export const adminPaths = [
   {
     name: "Add Car",
     path: "add-car",
-    element: <div>
-        <Title>Add Car page</Title>
-    </div>,
+    element: <AddCar />,
   },
   {
-    name: "Update Car",
-    path: "update-car",
-    element: <div>
-        <Title>Update Car page</Title>
-    </div>,
+    name: "Manage Cars",
+    path: "manage-car",
+    element: <ManageCar />,
   },
   {
-    name: "Delete Car",
-    path: "add-car",
-    element: <div>
-        <Title>Delete Car page</Title>
-    </div>,
-  },
-  {
-    name: "Order Management",
+    name: "Management Orders",
     path: "order-management",
-    element: <div>
+    element: (
+      <div>
         <Title>Order management page.</Title>
-    </div>,
+      </div>
+    ),
   },
 ];

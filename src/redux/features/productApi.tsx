@@ -19,6 +19,7 @@ const productApi = baseApi.injectEndpoints({
         url: "/cars",
         method: "GET",
       }),
+      providesTags: ["cars"],
     }),
     getSingleCar: builder.query({
       query: (id) => ({

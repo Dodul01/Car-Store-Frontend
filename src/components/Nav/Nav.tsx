@@ -11,8 +11,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const user = useAppSelector(selectCurrentUser);
-  const dispatch = useAppDispatch()
-  console.log(user);
+  const dispatch = useAppDispatch();
 
   return (
     <nav
@@ -50,6 +49,24 @@ const Nav = () => {
         >
           About
         </Link>
+
+        {user?.role === "seller" ? (
+          <Link
+            className="link"
+            to={"seller/dashboard"}
+            onClick={() => setMenuOpen(false)}
+          >
+            Dashboard
+          </Link>
+        ) : (
+          <Link
+            className="link"
+            to={"/admin/dashboard"}
+            onClick={() => setMenuOpen(false)}
+          >
+            Dashboard
+          </Link>
+        )}
       </div>
 
       {user ? (

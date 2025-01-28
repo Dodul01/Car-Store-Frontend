@@ -21,7 +21,6 @@ const SignUp: React.FC = () => {
 
       const res = await register(userInfo).unwrap();
       console.log(res);
-      // Todo: store the data using redux in local storage
       
     } catch (error) {
       console.log(error);

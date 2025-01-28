@@ -3,6 +3,7 @@ import { useLogInMutation } from "../../redux/features/Auth/authApi";
 import { verifyToken } from "../../utils/verifyToken";
 import { useAppDispatch } from "../../redux/hook";
 import { setUser } from "../../redux/features/Auth/authSlice";
+import { toast } from "sonner";
 
 const SignIn: React.FC = () => {
   const [form] = Form.useForm();
@@ -15,6 +16,7 @@ const SignIn: React.FC = () => {
   }
 
   const handleForm = async (value: SignInFormValues) => {
+    const toastId = toast.loading("Signing in...");
     try {
       const userInfo = {
         email: value.email,
@@ -24,11 +26,12 @@ const SignIn: React.FC = () => {
       const res = await logIn(userInfo).unwrap();
       const user = verifyToken(res.data.token);
 
-      // TODO: Store the data using redux in local storage and show the user
+      // Done: Store the data using redux in local storage and show the user
       dispatch(setUser({ user: user, token: res.data.token }));
-      console.log(user);
+      toast.success("Sign in successfully.", { id: toastId, duration: 2000 });
+      // console.log(res.message);
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong", { id: toastId, duration: 2000 });
     }
   };
 

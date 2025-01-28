@@ -6,6 +6,11 @@ import SignUp from "../pages/SignUp/SignUp";
 import AllCars from "../pages/AllCars/AllCars";
 import CarDetails from "../pages/CarDetails/CarDetails";
 import AboutUs from "../pages/AboutUs/AboutUs";
+import MainLayout from "../components/Layout/MainLayout";
+import ProtectedRoute from "../components/Layout/ProtectedRoute";
+import { routeGenerator } from "../utils/routesGenerator";
+import { adminPaths } from "./admin.routes";
+import { userPaths } from "./user.routes";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +42,24 @@ const router = createBrowserRouter([
   {
     path: "/signUp",
     element: <SignUp />,
+  },
+  {
+    path: "/admin",
+    element: (
+      <ProtectedRoute role="admin">
+        <MainLayout />
+      </ProtectedRoute>
+    ),
+    children: routeGenerator(adminPaths),
+  },
+  {
+    path: "/seller",
+    element: (
+      <ProtectedRoute role="seller">
+        <MainLayout />
+      </ProtectedRoute>
+    ),
+    children: routeGenerator(userPaths),
   },
 ]);
 

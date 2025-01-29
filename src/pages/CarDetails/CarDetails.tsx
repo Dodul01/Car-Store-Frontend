@@ -55,6 +55,8 @@ const CarDetails = () => {
 
       // TODO: I will use checkout page after paymet methods implementation
       // navigate(`/checkout/${car._id}`);
+    }else{
+      navigate('/signIn');
     }
   };
 
@@ -64,7 +66,7 @@ const CarDetails = () => {
         <Col lg={12} md={24} sm={24}>
           <Image
             width={"100%"}
-            height={300}
+            height={420}
             alt={car.model}
             src={
               car.image || "https://via.placeholder.com/800x400?text=Car+Image"

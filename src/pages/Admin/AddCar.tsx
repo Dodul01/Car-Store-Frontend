@@ -115,15 +115,6 @@ const AddCar = () => {
         form={form}
         layout="vertical"
         onFinish={onFinish}
-        initialValues={{
-          brand: "Tesla",
-          model: "T-100",
-          year: 2019,
-          price: 5000,
-          category: "Coupe",
-          description: "Powerful performance and advanced technology",
-          quantity: 1,
-        }}
       >
         <div
           style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}

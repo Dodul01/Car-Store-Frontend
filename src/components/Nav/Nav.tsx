@@ -49,24 +49,25 @@ const Nav = () => {
         >
           About
         </Link>
-
-        {user?.role === "seller" ? (
+        {user && user.role === "seller" ? (
           <Link
             className="link"
-            to={"seller/dashboard"}
+            to="seller/dashboard"
             onClick={() => setMenuOpen(false)}
           >
             Dashboard
           </Link>
-        ) : (
+        ) : user?.role === "admin" ? ( // Only check admin if user exists
           <Link
             className="link"
-            to={"/admin/dashboard"}
+            to="/admin/dashboard"
             onClick={() => setMenuOpen(false)}
           >
             Dashboard
           </Link>
-        )}
+        ) : null}{" "}
+        {/* Render nothing if no user or invalid role */}
+        {}
       </div>
 
       {user ? (

@@ -1,7 +1,8 @@
-import Title from "antd/es/typography/Title";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AddCar from "../pages/Admin/AddCar";
 import ManageCar from "../pages/Admin/ManageCar";
+import ManageOrders from "../pages/Admin/ManageOrders";
+import ManageAccounts from "../pages/Admin/ManageAccounts";
 
 export const adminPaths = [
   {
@@ -15,6 +16,11 @@ export const adminPaths = [
     element: <AddCar />,
   },
   {
+    name: "Manage Users Accounts",
+    path: "manage-users",
+    element: <ManageAccounts />,
+  },
+  {
     name: "Manage Cars",
     path: "manage-car",
     element: <ManageCar />,
@@ -22,10 +28,6 @@ export const adminPaths = [
   {
     name: "Management Orders",
     path: "order-management",
-    element: (
-      <div>
-        <Title>Order management page.</Title>
-      </div>
-    ),
+    element: <ManageOrders />,
   },
 ];

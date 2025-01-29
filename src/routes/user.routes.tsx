@@ -1,6 +1,6 @@
-import Title from "antd/es/typography/Title";
 import UserDashboard from "../pages/User/UserDashboard";
 import MyCart from "../pages/User/MyCart";
+import TrackMyOrderPage from "../pages/User/TrackMyOrderPage";
 
 export const userPaths = [
   {
@@ -16,10 +16,6 @@ export const userPaths = [
   {
     name: "Track My Order",
     path: "track-order",
-    element: (
-      <div>
-        <Title>Track My Order page</Title>
-      </div>
-    ),
+    element: <TrackMyOrderPage />,
   },
 ];

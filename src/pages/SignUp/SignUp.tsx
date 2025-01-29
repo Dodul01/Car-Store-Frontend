@@ -1,9 +1,12 @@
 import { Button, Form, Input } from "antd";
 import { useRegisterMutation } from "../../redux/features/Auth/authApi";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const SignUp: React.FC = () => {
   const [form] = Form.useForm();
   const [register] = useRegisterMutation();
+  const navigate = useNavigate();
 
   interface SignUpFormValues {
     name: string;
@@ -12,6 +15,7 @@ const SignUp: React.FC = () => {
   }
 
   const handleForm = async (value: SignUpFormValues) => {
+    const toastId = toast.loading("Signing in...");
     try {
       const userInfo = {
         name: value.name,
@@ -20,8 +24,10 @@ const SignUp: React.FC = () => {
       };
 
       const res = await register(userInfo).unwrap();
-      console.log(res);
-      
+      // console.log(res);
+
+      toast.success("Sign in successfully.", { id: toastId, duration: 2000 });
+      navigate("/all-cars");
     } catch (error) {
       console.log(error);
     }

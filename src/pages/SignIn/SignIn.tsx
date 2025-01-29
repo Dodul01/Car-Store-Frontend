@@ -27,11 +27,10 @@ const SignIn: React.FC = () => {
       const res = await logIn(userInfo).unwrap();
       const user = verifyToken(res.data.token);
 
-      console.log(res);
+
 
       dispatch(setUser({ user: user, token: res.data.token }));
       toast.success("Sign in successfully.", { id: toastId, duration: 2000 });
-      // console.log(res.message);
 
       if (user?.role === "seller") {
         navigate("/all-cars");
@@ -40,8 +39,9 @@ const SignIn: React.FC = () => {
       if (user?.role === "admin") {
         navigate("/admin/dashboard");
       }
-    } catch (error) {
-      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+    } catch (error: any) {
+      console.log(error); 
+      toast.error(error?.data?.message || "Something went wrong", { id: toastId, duration: 2000 });
     }
   };
 

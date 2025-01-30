@@ -111,11 +111,7 @@ const AddCar = () => {
         boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
       }}
     >
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={onFinish}
-      >
+      <Form form={form} layout="vertical" onFinish={onFinish}>
         <div
           style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}
         >
@@ -161,10 +157,11 @@ const AddCar = () => {
             rules={[{ required: true, message: "Please select category!" }]}
           >
             <Select placeholder="Select category">
-              <Option value="Coupe">Coupe</Option>
               <Option value="Sedan">Sedan</Option>
               <Option value="SUV">SUV</Option>
               <Option value="Truck">Truck</Option>
+              <Option value="Coupe">Coupe</Option>
+              <Option value="Convertible">Convertible</Option>
             </Select>
           </Form.Item>
 

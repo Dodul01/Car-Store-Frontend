@@ -1,9 +1,17 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useGetSingleCarQuery } from "../../redux/features/productApi";
-import { Card, Row, Col, Typography, List, Image, Button, Spin, message } from "antd";
+import {
+  Card,
+  Row,
+  Col,
+  Typography,
+  List,
+  Image,
+  Button,
+  Spin,
+} from "antd";
 import { useAppSelector } from "../../redux/hook";
 import { selectCurrentUser } from "../../redux/features/Auth/authSlice";
-import { useOrderCarMutation } from "../../redux/features/User/orderManagement.api";
 
 const { Title, Text } = Typography;
 
@@ -12,7 +20,6 @@ const CarDetails = () => {
   const navigate = useNavigate();
   const { data, error, isLoading } = useGetSingleCarQuery(id);
   const user = useAppSelector(selectCurrentUser);
-  const [orderCar] = useOrderCarMutation();
 
   if (isLoading) {
     return (
@@ -40,23 +47,10 @@ const CarDetails = () => {
   }
 
   const handleBuyNow = async () => {
-    if(user){
-      const orderInfo = {
-        email: user.email,
-        car: car._id,
-        quantity: 1,
-        totalPrice: car.price
-      }
-      const order = await orderCar(orderInfo).unwrap();
-
-      if(order.success){
-        message.success("Car Ordered Successfully.")
-      }
-
-      // TODO: I will use checkout page after paymet methods implementation
-      // navigate(`/checkout/${car._id}`);
-    }else{
-      navigate('/signIn');
+    if (user) {
+      navigate(`/checkout/${car._id}`);
+    } else {
+      navigate("/signIn");
     }
   };
 

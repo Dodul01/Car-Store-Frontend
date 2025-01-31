@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Table, Button, Spin, Tag, notification } from "antd";
 import {
@@ -20,7 +21,7 @@ const ManageAccounts = () => {
   const [loadingId, setLoadingId] = useState<string | null>(null);
 
   const handleBlockToggle = async (user: TUser) => {
-    setLoadingId(user?._id);
+    setLoadingId(user?._id as unknown as string);
     try {
       const response = await updateUserIsBlock({
         email: user.email,
@@ -76,9 +77,9 @@ const ManageAccounts = () => {
       render: (_: any, user: TUser) => (
         <Button
           type="default"
-          danger={user.isActive}
+          danger={user?.isActive}
           onClick={() => handleBlockToggle(user)}
-          loading={loadingId === user._id}
+          loading={loadingId === String(user._id)}
           disabled={user._id === currentUser?._id}
           icon={
             user._id === currentUser?._id ? <ExclamationCircleOutlined /> : null

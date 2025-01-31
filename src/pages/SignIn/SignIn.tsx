@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Form, Input } from "antd";
 import { useLogInMutation } from "../../redux/features/Auth/authApi";
 import { verifyToken } from "../../utils/verifyToken";

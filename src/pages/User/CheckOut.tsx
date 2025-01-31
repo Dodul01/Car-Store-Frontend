@@ -63,6 +63,8 @@ const CheckOut = () => {
       card: cardElement,
     });
 
+    console.log(error);
+
     try {
       const orderData = {
         car: product._id,
@@ -79,7 +81,9 @@ const CheckOut = () => {
 
       if (result.data.data.status) {
         message.success("Order created successfully.");
-        window.location.assign("http://localhost:5173/seller/track-order");
+        window.location.assign(
+          "https://assignment-two-one-omega.vercel.app/seller/track-order"
+        );
       }
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err: any) {

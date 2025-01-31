@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card, Col, Row, Statistic, Typography } from "antd";
 import { useAppSelector } from "../../redux/hook";
 import { selectCurrentUser } from "../../redux/features/Auth/authSlice";
@@ -9,7 +10,11 @@ const UserDashboard = () => {
   const user = useAppSelector(selectCurrentUser);
   const { data } = useGetOrdersQuery(user?.email);
 
-  const totalSpending = data?.data.orders.reduce((acc, order) => acc + order.totalPrice, 0) || 0;
+  const totalSpending =
+    data?.data.orders.reduce(
+      (acc: any, order: any) => acc + order.totalPrice,
+      0
+    ) || 0;
 
   return (
     <div style={{ padding: "24px" }}>
@@ -43,7 +48,11 @@ const UserDashboard = () => {
           <Card style={{ borderRadius: "8px" }}>
             <Statistic
               title="Pending Orders"
-              value={data?.data.orders.filter((order) => order.status === "Pending").length || 0}
+              value={
+                data?.data.orders.filter(
+                  (order: any) => order.status === "Pending"
+                ).length || 0
+              }
               valueStyle={{ color: "#cf1322" }}
             />
           </Card>

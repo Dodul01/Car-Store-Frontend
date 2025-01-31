@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card, Col, Row, Skeleton, Statistic, Typography } from "antd";
 import Title from "antd/es/typography/Title";
 import { useGetRevinueQuery } from "../../redux/features/Admin/revinueManagement.api";
@@ -20,7 +21,7 @@ const AdminDashboard = () => {
   console.log(revenueData);
 
   // Calculate total available cars (in stock)
-  const totalCars = carsData?.data?.filter((car) => car.inStock).length || 0;
+  const totalCars = carsData?.data?.filter((car: any) => car.inStock).length || 0;
 
   // Format currency
   const formatter = new Intl.NumberFormat("en-US", {
@@ -88,7 +89,7 @@ const AdminDashboard = () => {
               <Statistic
                 title="Total Revenue"
                 value={revenueData?.data?.totalRevenue}
-                formatter={(value) => formatter.format(value)}
+                formatter={(value) => formatter.format(Number(value))}
                 valueStyle={{
                   color: "#2c3d34",
                   fontSize: "32px",

@@ -22,7 +22,9 @@ const Nav = () => {
       }
       className="nav-container"
     >
-      <h2>AutoNest</h2>
+      <Link style={{textDecoration: 'none'}} to={"/"}>
+        <h2 style={{ color: "white"}}>AutoNest</h2>
+      </Link>
 
       <div className={`link-container ${menuOpen ? "open" : ""}`}>
         <Link className="link" to={"/"} onClick={() => setMenuOpen(false)}>
@@ -35,19 +37,19 @@ const Nav = () => {
         >
           All Cars
         </Link>
-        <Link
+        {/* <Link
           className="link"
           to={"/gallery"}
           onClick={() => setMenuOpen(false)}
         >
           Gallery
-        </Link>
+        </Link> */}
         <Link
           className="link"
           to={"/about-us"}
           onClick={() => setMenuOpen(false)}
         >
-          About
+          About Us
         </Link>
         {user && user.role === "seller" ? (
           <Link
@@ -57,7 +59,7 @@ const Nav = () => {
           >
             Dashboard
           </Link>
-        ) : user?.role === "admin" ? ( 
+        ) : user?.role === "admin" ? (
           <Link
             className="link"
             to="/admin/dashboard"

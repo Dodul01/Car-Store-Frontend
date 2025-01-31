@@ -5,6 +5,7 @@ import { verifyToken } from "../../utils/verifyToken";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { logout, useCurrentToken } from "../../redux/features/Auth/authSlice";
 
+
 type TProtectedRoute = {
   children: ReactNode;
   role: string | undefined;

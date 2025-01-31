@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import { LockOutlined } from "@ant-design/icons";
@@ -9,7 +10,7 @@ const ProfileSettings = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [updatePassword] = useUpdatePasswordMutation();
-  const user = useAppSelector(selectCurrentUser);
+  const user = useAppSelector(selectCurrentUser) as { _id: string } | null;
 
   const onFinish = async (values: {
     currentPassword: string;

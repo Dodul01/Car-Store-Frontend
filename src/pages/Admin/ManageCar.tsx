@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import {
   Table,
@@ -59,7 +60,7 @@ const ManageCar = () => {
     }
   };
 
-  const handleDeleteConfirm = async (data) => {
+  const handleDeleteConfirm = async (data: any) => {
     try {
       const result = await deleteCar({ _id: data._id }).unwrap();
 

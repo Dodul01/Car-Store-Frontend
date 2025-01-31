@@ -10,8 +10,8 @@ const Banner = () => {
     <div className="banner-container">
       <img className="banner-image" src={bgImage} alt="Luxury Car Rental" />
       <div className="banner-content">
-        <h1>Luxury car rental in Italy</h1>
-        <p>Drive in style and comfort with our premium car rentals.</p>
+        <h1>Luxury car shop in Italy</h1>
+        <p>Drive in style and comfort with our premium cars.</p>
         <Button
           onClick={() => navigate("/signUp")}
           style={{

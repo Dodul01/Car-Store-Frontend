@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { selectCurrentUser } from "../../redux/features/Auth/authSlice";
 import { useGetOrdersQuery } from "../../redux/features/User/orderManagement.api";
 import { useAppSelector } from "../../redux/hook";
@@ -84,8 +85,8 @@ const TrackMyOrderPage = () => {
       </Title>
 
       <Row gutter={[cardSpacing, cardSpacing]} justify="center">
-        {orders.map((order) => {
-          const car = cars.find((c) => c._id === order.car);
+        {orders.map((order: any) => {
+          const car = cars.find((c: any) => c._id === order.car);
           const status = order.status || "Pending";
 
           return (
@@ -109,28 +110,41 @@ const TrackMyOrderPage = () => {
                 <Row gutter={[16, 16]}>
                   <Col xs={24} sm={12}>
                     <Text type="secondary">Order ID:</Text>
-                    <Text strong block>
-                      {order._id}
-                    </Text>
+                    <div>
+                      <Text strong>
+                        {order._id}
+                      </Text>
+                    </div>
                   </Col>
 
-                  <Col xs={12} sm={6}>
-                    <Text type="secondary">Quantity:</Text>
-                    <Text strong block>
-                      {order.quantity}
-                    </Text>
-                  </Col>
-
-                  <Col xs={12} sm={6}>
-                    <Text type="secondary">Total Price:</Text>
-                    <Text strong block>
-                      ${order.totalPrice?.toLocaleString()}
-                    </Text>
-                  </Col>
+                    <Col xs={24} sm={12}>
+                      <Text type="secondary">Quantity:</Text>
+                      <div>
+                        <Text strong>
+                          {order.quantity}
+                        </Text>
+                      </div>
+                    </Col>
+                    <Col xs={24} sm={12}>
+                      <Text type="secondary">Total Price:</Text>
+                      <div>
+                        <Text strong>
+                          ${order.totalPrice?.toLocaleString()}
+                        </Text>
+                      </div>
+                    </Col>
+                    <Col xs={24}>
+                      <Text type="secondary">Order Date:</Text>
+                      <div>
+                        <Text strong>
+                          {new Date(order.createdAt).toLocaleDateString()}
+                        </Text>
+                      </div>
+                    </Col>
 
                   <Col xs={24}>
                     <Text type="secondary">Order Date:</Text>
-                    <Text strong block>
+                    <Text strong>
                       {new Date(order.createdAt).toLocaleDateString()}
                     </Text>
                   </Col>

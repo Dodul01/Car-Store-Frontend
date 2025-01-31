@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
 export type TUser = {
+  isActive: boolean | undefined;
+  _id(_id: any): unknown;
   name: string;
   userId: string;
   role: string;

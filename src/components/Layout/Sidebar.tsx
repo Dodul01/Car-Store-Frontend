@@ -13,7 +13,12 @@ const userRole = {
   SELLER: "seller",
 };
 
-const Sidebar = ({ collapsed, onCollapse }) => {
+interface SidebarProps {
+  collapsed: boolean;
+  onCollapse: (collapsed: boolean) => void;
+}
+
+const Sidebar = ({ collapsed, onCollapse }: SidebarProps) => {
   const token = useAppSelector(useCurrentToken);
   let user;
   let sidebarItems;

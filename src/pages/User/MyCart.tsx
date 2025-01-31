@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Table, Typography, Image } from "antd";
 import { selectCurrentUser } from "../../redux/features/Auth/authSlice";
 import { useGetOrdersQuery } from "../../redux/features/User/orderManagement.api";
@@ -14,7 +15,7 @@ const MyCart = () => {
       title: "Image",
       dataIndex: "image",
       key: "image",
-      render: (text) => <Image src={text} alt="Car" width={80} />,
+      render: (text: any) => <Image src={text} alt="Car" width={80} />,
     },
     {
       title: "Name",
@@ -38,8 +39,10 @@ const MyCart = () => {
     },
   ];
 
-  const dataSource = data?.data.orders.map((order) => {
-    const carDetails = data?.data.cars.find((car) => car._id === order.car);
+  const dataSource = data?.data.orders.map((order: any) => {
+    const carDetails = data?.data.cars.find(
+      (car: any) => car._id === order.car
+    );
     return {
       key: order._id,
       image: carDetails?.image,
@@ -58,11 +61,11 @@ const MyCart = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <Table 
-          columns={columns} 
-          dataSource={dataSource} 
-          pagination={{ pageSize: 5 }} 
-          bordered 
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          pagination={{ pageSize: 5 }}
+          bordered
         />
       )}
     </div>

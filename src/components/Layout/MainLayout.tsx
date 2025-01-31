@@ -19,7 +19,6 @@ import { Outlet } from "react-router-dom";
 
 const { Header, Content } = Layout;
 
-
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const currentUser = useAppSelector(selectCurrentUser);

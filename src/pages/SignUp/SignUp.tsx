@@ -24,10 +24,9 @@ const SignUp: React.FC = () => {
       };
 
       const res = await register(userInfo).unwrap();
-      // console.log(res);
 
-      toast.success("Sign in successfully.", { id: toastId, duration: 2000 });
-      navigate("/all-cars");
+      toast.success("Sign Up successfully.", { id: toastId, duration: 2000 });
+      navigate("/signIn");
     } catch (error) {
       console.log(error);
     }

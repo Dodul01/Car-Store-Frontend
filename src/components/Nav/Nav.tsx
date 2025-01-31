@@ -57,7 +57,7 @@ const Nav = () => {
           >
             Dashboard
           </Link>
-        ) : user?.role === "admin" ? ( // Only check admin if user exists
+        ) : user?.role === "admin" ? ( 
           <Link
             className="link"
             to="/admin/dashboard"
@@ -66,8 +66,6 @@ const Nav = () => {
             Dashboard
           </Link>
         ) : null}{" "}
-        {/* Render nothing if no user or invalid role */}
-        {}
       </div>
 
       {user ? (
@@ -94,7 +92,6 @@ const Nav = () => {
         </Button>
       )}
 
-      {/* Mobile Menu Button */}
       <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <CloseOutlined /> : <MenuOutlined />}
       </div>

@@ -21,7 +21,7 @@ const Banner = () => {
           }}
           className="rent-now-btn"
         >
-          Order Now
+          Sign Up
         </Button>
       </div>
     </div>

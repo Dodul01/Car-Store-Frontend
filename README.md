@@ -1,5 +1,9 @@
 # Car and Order Management - Frontend
-
+# Admin Credentials
+```
+email: systemAdmin@gmail.com
+password: systemAdmin
+```
 ## Overview
 This is the frontend application for the Car and Order Management system. It provides a user-friendly interface to manage cars, place orders, and handle user authentication. The application interacts with the backend API to fetch and manipulate data.
 

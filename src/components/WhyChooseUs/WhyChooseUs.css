@@ -1,0 +1,37 @@
+.why-choose-us-section {
+  background-color: #f9f9f9;
+  padding: 60px 20px;
+}
+
+.why-choose-us-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.why-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.why-subtitle {
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+
+.why-card {
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+  background: #fff;
+}
+
+.why-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.why-card .ant-typography {
+  margin-top: 12px;
+}

@@ -1,0 +1,54 @@
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.car-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+  min-width: 250px;
+  border-radius: 12px;
+}
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.price {
+  color: #1890ff;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.card-description {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #666;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Medium screens: 2 cards */
+@media (min-width: 768px) {
+  .car-card {
+    flex: 0 0 calc(50% - 16px);
+    max-width: calc(50% - 16px);
+  }
+}
+
+/* Large screens: 4 cards */
+@media (min-width: 1024px) {
+  .car-card {
+    flex: 0 0 calc(25% - 16px);
+    max-width: calc(25% - 16px);
+  }
+}

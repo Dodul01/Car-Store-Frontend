@@ -7,22 +7,26 @@ const Banner = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="banner-container">
-      <img className="banner-image" src={bgImage} alt="Luxury Car Rental" />
-      <div className="banner-content">
-        <h1>Luxury car shop in Italy</h1>
-        <p>Drive in style and comfort with our premium cars.</p>
-        <Button
-          onClick={() => navigate("/signUp")}
-          style={{
-            borderRadius: "16px",
-            border: "1px solid black",
-            background: "#f2c8a7",
-          }}
-          className="rent-now-btn"
-        >
-          Sign Up
-        </Button>
+    <div className="banner-wrapper">
+      <div className="banner-container">
+        <img className="banner-image" src={bgImage} alt="Luxury Car Rental" />
+        <div className="banner-overlay" />
+        <div className="banner-content">
+          <h1>Experience Elite Car Rental</h1>
+          <p>Unleash sophistication and comfort across Italy’s roads.</p>
+          <Button
+            onClick={() => navigate("/signUp")}
+            style={{
+              borderRadius: "20px",
+              backgroundColor: "#f2c8a7",
+              padding: "8px 24px",
+              fontWeight: "600",
+              border: "none",
+            }}
+          >
+            Get Started
+          </Button>
+        </div>
       </div>
     </div>
   );

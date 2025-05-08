@@ -3,6 +3,8 @@ import { Button } from "antd";
 import "./FeaturedProducts.css";
 import { useGetFeaturndCarsQuery } from "../../redux/features/productApi";
 import { useNavigate } from "react-router-dom";
+import Title from "antd/es/typography/Title";
+import Paragraph from "antd/es/typography/Paragraph";
 
 const FeaturedProducts = () => {
   const { data } = useGetFeaturndCarsQuery(undefined);
@@ -10,42 +12,38 @@ const FeaturedProducts = () => {
 
   return (
     <div className="vehicle-carousel-container">
-      <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
+      <div className="section-wrapper">
+        <div className="section-header">
           <div>
-            <h1 className="title">Featured Products</h1>
-            <p className="subtitle">Best cars in our collection</p>
+            <Title level={2}>Featured Cars</Title>
+            <Paragraph style={{ color: "#666", marginBottom: 40 }}>
+              Best cars in our collection
+            </Paragraph>
           </div>
-          <div>
-            <Button onClick={() => navigate("/all-cars")}>View All</Button>
-          </div>
+          <Button type="default" onClick={() => navigate("/all-cars")}>
+            View All
+          </Button>
         </div>
 
         <div className="featured-products-container">
-          {data?.data?.slice(0, 6).map((product: any) => (
-            <div style={{ height: "300px" }} className="card" key={product.id}>
-              <h2>
-                {product.brand} {product.model}
-              </h2>
-              <p>
-                ${product.price} <span></span>
-              </p>
+          {data?.data?.slice(0, 4).map((product: any) => (
+            <div className="card" key={product.id}>
               <img
-                style={{ height: "180px", objectFit: "cover" }}
+                className="card-image"
                 src={product.image}
-                alt={product.name}
+                alt={`${product.brand} ${product.model}`}
               />
-              <div
-                onClick={() => navigate(`/${product._id}`)}
-                className="arrow"
-              >
-                &rarr;
+              <div className="card-content">
+                <h2>
+                  {product.brand} {product.model}
+                </h2>
+                <p className="price">${product.price}</p>
+                <div
+                  onClick={() => navigate(`/${product._id}`)}
+                  className="arrow"
+                >
+                  View Details →
+                </div>
               </div>
             </div>
           ))}

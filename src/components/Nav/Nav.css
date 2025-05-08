@@ -1,66 +1,98 @@
 .nav-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 97vw;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  transition: background 0.3s ease;
+  box-shadow: none;
+}
+
+.nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 12px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 12px;
-  color: white;
-  z-index: 10;
 }
 
-.link-container {
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #f2c8a7;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.nav-links {
   display: flex;
   align-items: center;
-  gap: 16px;
-  color: white;
+  gap: 20px;
 }
 
-.link {
-  color: white;
+.nav-link {
+  color: #fff;
+  font-weight: 500;
   text-decoration: none;
-  font-size: small;
-  transition: all ease 0.3s;
+  font-size: 16px;
+  transition: color 0.3s ease;
 }
 
-.link:hover {
-  color: #f3c6a4;
+.nav-link:hover {
+  color: #f2c8a7;
 }
 
-.menu-icon {
+.auth-button {
+  background: #f2c8a7;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+.menu-toggle {
   display: none;
-  font-size: 1.8rem;
+  font-size: 24px;
   color: white;
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .nav-container {
-    width: 86%;
-  }
-  .menu-icon {
-    display: block;
-  }
-
-  .link-container {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 80px;
+@media screen and (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 64px;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 20px;
+    height: calc(100vh - 64px);
+    background: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 40px 20px;
+    display: none;
   }
 
-  .link-container.open {
+  .nav-links.open {
     display: flex;
   }
 
-  .link {
-    font-size: 1rem;
-    padding: 10px 0;
+  .nav-link {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 18px;
+  }
+
+  .auth-button {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: block;
   }
 }

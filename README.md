@@ -1,50 +1,40 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Car and Order Management - Frontend
+# Admin Credentials
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+email: systemAdmin@gmail.com
+password: systemAdmin
 ```
+## Overview
+This is the frontend application for the Car and Order Management system. It provides a user-friendly interface to manage cars, place orders, and handle user authentication. The application interacts with the backend API to fetch and manipulate data.
+
+## Tech Stack
+- **Framework:** React.js
+- **State Management:**  Redux
+- **UI Library:** Ant Design
+- **Authentication:** JWT-based authentication
+- **Payment:** Stripe
+
+## Features
+- User authentication (Login & Logout)
+- Car inventory management (Add, Update, Delete cars)
+- Order placement and management
+- Admin and User dashboards
+- Responsive design
+
+---
+
+## Installation and Setup
+
+### Prerequisites
+- Node.js installed
+- Backend API running
+
+### Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/{repository}/frontend.git
+   cd frontend
+   npm i
+   ```
+
+   Yor are good to test the project.

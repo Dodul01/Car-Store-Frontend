@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useGetFeaturndCarsQuery } from "../../redux/features/productApi";
 import { Button, Card } from "antd";
 import "./BestSelling.css";
+import Title from "antd/es/typography/Title";
+import Paragraph from "antd/es/typography/Paragraph";
 
 const { Meta } = Card;
 
@@ -14,8 +16,10 @@ const BestSelling = () => {
     <div style={{ maxWidth: "1400px", margin: "auto", padding: "3rem 1rem" }}>
       <div className="section-header">
         <div>
-          <h1 className="title">Best Selling Cars</h1>
-          <p className="subtitle">Cars the customar like most.</p>
+          <Title level={2}>Best Selling Cars</Title>
+          <Paragraph style={{ color: "#666", marginBottom: 40 }}>
+            Our most popular cars chosen by drivers like you.
+          </Paragraph>
         </div>
       </div>
       {/* cars container */}

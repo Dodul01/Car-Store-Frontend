@@ -134,7 +134,7 @@ const ContactForm = () => {
             Get in touch
           </Title>
           <Text type="secondary">
-            Have a project in mind? Let's work together.
+            Have a query in mind? Let's work together.
           </Text>
         </div>
 

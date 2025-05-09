@@ -117,11 +117,6 @@ const Nav = () => {
   return (
     <nav
       className="nav-container"
-      // style={{
-      //   background: location.pathname === "/" ? "transparent" : "#0d0d0d",
-      //   boxShadow:
-      //     location.pathname === "/" ? "none" : "0 2px 8px rgba(0,0,0,0.15)",
-      // }}
       style={{
         background:
           isScrolled || location.pathname !== "/" ? "#0d0d0d" : "transparent",
@@ -146,6 +141,20 @@ const Nav = () => {
             onClick={() => setMenuOpen(false)}
           >
             All Cars
+          </Link>
+          <Link
+            to="/all-blogs"
+            className="nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            Blogs
+          </Link>
+          <Link
+            to="/our-team"
+            className="nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            Our team
           </Link>
           <Link
             to="/about-us"

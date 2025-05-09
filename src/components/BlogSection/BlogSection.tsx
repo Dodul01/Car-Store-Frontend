@@ -26,7 +26,7 @@ const BlogSection = () => {
           </div>
 
           <div>
-            <Button type="default" onClick={() => navigate("/all-cars")}>
+            <Button type="default" onClick={() => navigate("/all-blogs")}>
               View All
             </Button>
           </div>
@@ -48,7 +48,11 @@ const BlogSection = () => {
               >
                 <Title level={4}>{blog.title}</Title>
                 <Paragraph ellipsis={{ rows: 2 }}>{blog.summary}</Paragraph>
-                <Button style={{ width: "100%" }} variant="link">
+                <Button
+                  onClick={() => navigate(`/blogs/${blog.id}`)}
+                  style={{ width: "100%" }}
+                  variant="link"
+                >
                   Read More
                 </Button>
               </Card>

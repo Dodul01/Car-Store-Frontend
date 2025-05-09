@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Form,
   Input,
@@ -26,7 +27,7 @@ const AddCar = () => {
 
   const handleCloudinaryUpload = async (file: File) => {
     const formData = new FormData();
-    formData.append("file", file); // Ensure you're passing the raw file object
+    formData.append("file", file);
     formData.append("upload_preset", UPLOAD_PRESET);
 
     try {

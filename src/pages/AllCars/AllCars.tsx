@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Input,
   Select,
@@ -12,15 +12,18 @@ import {
 } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useGetAllCarsQuery } from "../../redux/features/productApi";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
 
 const AllCars = () => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const category = queryParams.get("category");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedBrand, setSelectedBrand] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(category || "");
   const [priceRange, setPriceRange] = useState([5000, 100000]);
   const [currentPage, setCurrentPage] = useState(1);
   const carsPerPage = 8;
@@ -56,6 +59,12 @@ const AllCars = () => {
 
   const startIndex = (currentPage - 1) * carsPerPage;
   const paginatedCars = data?.data?.slice(startIndex, startIndex + carsPerPage);
+
+  useEffect(() => {
+    if (category) {
+      setSelectedCategory(category);
+    }
+  }, [category]);
 
   return (
     <div

@@ -2,20 +2,11 @@
 import { selectCurrentUser } from "../../redux/features/Auth/authSlice";
 import { useGetOrdersQuery } from "../../redux/features/User/orderManagement.api";
 import { useAppSelector } from "../../redux/hook";
-import {
-  Card,
-  Grid,
-  Spin,
-  Typography,
-  Tag,
-  Empty,
-  Alert,
-  Row,
-  Col,
-} from "antd";
+import { Grid, Spin, Typography, Tag, Empty, Alert, Table } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import type { Breakpoint } from "antd/es/_util/responsiveObserver";
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 const { useBreakpoint } = Grid;
 
 const statusColors: Record<string, string> = {
@@ -30,9 +21,6 @@ const TrackMyOrderPage = () => {
   const user = useAppSelector(selectCurrentUser);
   const screens = useBreakpoint();
   const { data, isLoading, isError, error } = useGetOrdersQuery(user?.email);
-
-  const cardSpacing = screens.md ? 24 : 12;
-  const cardWidth = screens.lg ? "80%" : "100%";
 
   if (isLoading) {
     return (
@@ -72,6 +60,58 @@ const TrackMyOrderPage = () => {
     );
   }
 
+  // Table data
+  const tableData = orders.map((order: any, index: number) => {
+    const car = cars.find((c: any) => c._id === order.car);
+    return {
+      key: order._id,
+      index: index + 1,
+      car: car ? `${car.brand} ${car.model}` : "Unknown",
+      status: order.status || "Pending",
+      quantity: order.quantity,
+      price: `$${order.totalPrice?.toLocaleString()}`,
+      date: new Date(order.createdAt).toLocaleDateString(),
+    };
+  });
+  const columns = [
+    {
+      title: "#",
+      dataIndex: "index",
+      key: "index",
+      width: 50,
+      responsive: ["md" as Breakpoint],
+    },
+    {
+      title: "Car",
+      dataIndex: "car",
+      key: "car",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      render: (status: string) => (
+        <Tag color={statusColors[status]}>{status.toUpperCase()}</Tag>
+      ),
+    },
+    {
+      title: "Quantity",
+      dataIndex: "quantity",
+      key: "quantity",
+      responsive: ["md" as Breakpoint],
+    },
+    {
+      title: "Total Price",
+      dataIndex: "price",
+      key: "price",
+    },
+    {
+      title: "Order Date",
+      dataIndex: "date",
+      key: "date",
+    },
+  ];
+
   return (
     <div
       style={{
@@ -80,80 +120,19 @@ const TrackMyOrderPage = () => {
         margin: "0 auto",
       }}
     >
-      <Title level={2} style={{ marginBottom: "32px", textAlign: "center" }}>
-        Your Orders
-      </Title>
-
-      <Row gutter={[cardSpacing, cardSpacing]} justify="center">
-        {orders.map((order: any) => {
-          const car = cars.find((c: any) => c._id === order.car);
-          const status = order.status || "Pending";
-
-          return (
-            <Col key={order._id} xs={24} md={18} lg={16}>
-              <Card
-                bordered
-                hoverable
-                style={{
-                  width: cardWidth,
-                  marginBottom: screens.xs ? "16px" : 0,
-                }}
-                title={
-                  <Text strong ellipsis>
-                    {car ? `${car.brand} ${car.model}` : "Unknown Vehicle"}
-                  </Text>
-                }
-                extra={
-                  <Tag color={statusColors[status]}>{status.toUpperCase()}</Tag>
-                }
-              >
-                <Row gutter={[16, 16]}>
-                  <Col xs={24} sm={12}>
-                    <Text type="secondary">Order ID:</Text>
-                    <div>
-                      <Text strong>
-                        {order._id}
-                      </Text>
-                    </div>
-                  </Col>
-
-                    <Col xs={24} sm={12}>
-                      <Text type="secondary">Quantity:</Text>
-                      <div>
-                        <Text strong>
-                          {order.quantity}
-                        </Text>
-                      </div>
-                    </Col>
-                    <Col xs={24} sm={12}>
-                      <Text type="secondary">Total Price:</Text>
-                      <div>
-                        <Text strong>
-                          ${order.totalPrice?.toLocaleString()}
-                        </Text>
-                      </div>
-                    </Col>
-                    <Col xs={24}>
-                      <Text type="secondary">Order Date:</Text>
-                      <div>
-                        <Text strong>
-                          {new Date(order.createdAt).toLocaleDateString()}
-                        </Text>
-                      </div>
-                    </Col>
-
-                  <Col xs={24}>
-                    <Text type="secondary">Order Date:</Text>
-                    <Text strong>
-                      {new Date(order.createdAt).toLocaleDateString()}
-                    </Text>
-                  </Col>
-                </Row>
-              </Card>
-            </Col>
-          );
-        })}
-      </Row>
+      {/* Table View */}
+      <div style={{ marginTop: "48px" }}>
+        <Title level={4} style={{ marginBottom: "16px" }}>
+          Orders Summary
+        </Title>
+        <Table
+          columns={columns}
+          dataSource={tableData}
+          pagination={{ pageSize: 5 }}
+          scroll={{ x: true }}
+          bordered
+        />
+      </div>
     </div>
   );
 };

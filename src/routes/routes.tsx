@@ -16,6 +16,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import AllBlogs from "../pages/AllBlogs/AllBlogs";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
+import OurTeam from "../pages/OurTeam/OurTeam";
 
 const stripePromise = loadStripe(
   "pk_test_51PcPm62MP0L90YjvNNkd1UGVrq9nu0QWdLfYT4pIF7xAJcfykwMCNeTiZVhSswnCNFHdp2WbqZJweJcxk9IRxARE00OCcRlb8N"
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/:id",
         element: <CarDetails />,
+      },
+      {
+        path: "/our-team",
+        element: <OurTeam />,
       },
       {
         path: "/checkout/:id",
